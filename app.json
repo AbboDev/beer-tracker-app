@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Beer Tracker",
+    "slug": "beer-tracker-app",
+    "scheme": "beertracker",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "L'app usa la fotocamera per scansionare il QR code sulle bottiglie."
+        }
+      ]
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.beertracker"
+    },
+    "android": {
+      "package": "com.example.beertracker"
+    }
+  }
+}
