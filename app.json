@@ -15,12 +15,26 @@
         }
       ]
     ],
+    "web": {
+      "output": "server",
+      "bundler": "metro"
+    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.example.beertracker"
     },
     "android": {
-      "package": "com.example.beertracker"
+      "package": "com.example.beertracker",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "4c7578e1-1ab3-443a-a6e3-bb68a24c8424"
+      }
     }
   }
 }

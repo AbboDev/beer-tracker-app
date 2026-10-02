@@ -1,6 +1,17 @@
 node_modules/
+
+# Builds & Cache
 .expo/
-.android/
-.ios/
+dist/
+*.orig.*
+
+# Expo / Native folders
+/android
+/ios
+
+# Environment
 .env*
 !.env.example
+
+# Vercel
+.vercel

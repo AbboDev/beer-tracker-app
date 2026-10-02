@@ -40,6 +40,14 @@ beer-tracker-app/
 - **bottle_movements**: log storico di ogni incremento/decremento, utile per
   statistiche future (es. "quante IPA ho imbottigliato questo mese").
 
+## Versioni
+
+Progetto allineato a **Expo SDK 57** (React Native 0.86, React 19.2.3), che richiede
+**Node.js 22.13.x o superiore** — quindi Node 24 LTS va benissimo. Dopo aver clonato
+o scaricato il progetto esegui `npx expo install --fix` per far allineare Expo alle
+versioni esatte compatibili di tutte le dipendenze native (`expo-camera`,
+`expo-router`, ecc.), invece di fissarle a mano nel `package.json`.
+
 ## Setup
 
 1. Crea un progetto su [supabase.com](https://supabase.com).
