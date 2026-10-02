@@ -16,7 +16,7 @@
       ]
     ],
     "web": {
-      "output": "server",
+      "output": "single",
       "bundler": "metro"
     },
     "ios": {
