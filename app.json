@@ -13,10 +13,11 @@
         {
           "cameraPermission": "L'app usa la fotocamera per scansionare il QR code sulle bottiglie."
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "web": {
-      "output": "single",
+      "output": "server",
       "bundler": "metro"
     },
     "ios": {

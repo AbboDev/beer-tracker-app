@@ -1,4 +1,5 @@
 import 'react-native-url-polyfill/auto';
+import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from '../types/database';
@@ -14,11 +15,25 @@ if (!supabaseUrl || !supabaseAnonKey) {
   );
 }
 
+const webStorage = {
+  getItem: async (key: string) =>
+    typeof window === 'undefined' ? null : window.localStorage.getItem(key),
+  setItem: async (key: string, value: string) => {
+    if (typeof window !== 'undefined') window.localStorage.setItem(key, value);
+  },
+  removeItem: async (key: string) => {
+    if (typeof window !== 'undefined') window.localStorage.removeItem(key);
+  },
+};
+
 export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
   auth: {
-    storage: AsyncStorage,
+    storage: Platform.OS === 'web' ? webStorage : AsyncStorage,
     autoRefreshToken: true,
     persistSession: true,
-    detectSessionInUrl: false,
+    // Su web lasciamo che Supabase legga il codice OAuth dall'URL dopo il redirect.
+    // Su nativo lo facciamo manualmente in AuthContext con expo-web-browser.
+    detectSessionInUrl: Platform.OS === 'web',
+    flowType: 'pkce',
   },
 });
