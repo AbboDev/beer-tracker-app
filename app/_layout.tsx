@@ -21,6 +21,7 @@ function RootLayoutNav() {
   return (
     <Stack>
       <Stack.Screen name="login" options={{ title: 'Accedi' }} />
+      <Stack.Screen name="auth/callback" options={{ title: 'Accesso', headerShown: false }} />
       <Stack.Screen name="index" options={{ title: 'Le mie birre' }} />
       <Stack.Screen name="beer-models/index" options={{ title: 'Modelli di birra' }} />
       <Stack.Screen name="beer-models/add" options={{ title: 'Nuovo modello' }} />
