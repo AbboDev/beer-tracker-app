@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { View, Text, TextInput, Button, Alert } from 'react-native';
 import { useRouter } from 'expo-router';
 import { createBeerModel } from '../../src/services/beerModels.service';
+import { useAuth } from '../../src/contexts/AuthContext';
 
 export default function AddBeerModelScreen() {
   const router = useRouter();
+  const { isAdmin } = useAuth();
   const [name, setName] = useState('');
   const [style, setStyle] = useState('');
   const [abv, setAbv] = useState('');
@@ -34,6 +36,14 @@ export default function AddBeerModelScreen() {
     } finally {
       setSaving(false);
     }
+  }
+
+  if (!isAdmin) {
+    return (
+      <View>
+        <Text>Solo gli amministratori possono aggiungere nuovi modelli di birra.</Text>
+      </View>
+    );
   }
 
   return (

@@ -23,8 +23,6 @@ export async function adjustBottleCount({
 }: AdjustParams): Promise<BottleInventory> {
   if (delta === 0) throw new Error('Il delta non può essere 0');
 
-  const column = state === 'empty' ? 'empty_count' : 'full_count';
-
   // 1. Leggo il valore corrente
   const { data: current, error: readError } = await supabase
     .from('bottle_inventory')
@@ -34,15 +32,17 @@ export async function adjustBottleCount({
 
   if (readError) throw readError;
 
-  const newValue = (current as any)[column] + delta;
+  const currentValue = state === 'empty' ? current.empty_count : current.full_count;
+  const newValue = currentValue + delta;
   if (newValue < 0) {
     throw new Error('Il numero di bottiglie non può essere negativo');
   }
 
   // 2. Aggiorno il contatore
+  const update = state === 'empty' ? { empty_count: newValue } : { full_count: newValue };
   const { data: updated, error: updateError } = await supabase
     .from('bottle_inventory')
-    .update({ [column]: newValue })
+    .update(update)
     .eq('beer_model_id', beerModelId)
     .select()
     .single();
